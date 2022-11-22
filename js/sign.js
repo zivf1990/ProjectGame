@@ -1,9 +1,6 @@
-const x = document.getElementById("login");
-const y = document.getElementById("register");
-const z = document.getElementById("btn");
-
-const loginBtn = document.querySelector("#toggle-login");
-const signupBtn = document.querySelector("#toggle-signup");
+const loginBtn = document.getElementById("toggle-login");
+const signupBtn = document.getElementById("toggle-signup");
+const toggleDiv = document.getElementById("toggle-div");
 const loginForm = document.forms["login-form"];
 const signupForm = document.forms["signup-form"];
 // loginForm["user-id"].value       ("user-id" - (name property))
@@ -11,13 +8,13 @@ const signupForm = document.forms["signup-form"];
 loginBtn.addEventListener("click", login);
 signupBtn.addEventListener("click", signup);
 
-function register() {
-  x.style.left = "-400px";
-  y.style.left = "50px";
+function signup() {
+  loginForm.style.left = "-400px";
+  signupForm.style.left = "50px";
   z.style.left = "110px";
 }
 function login() {
   x.style.left = "50px";
-  y.style.left = "450px";
+  signupForm.style.left = "450px";
   z.style.left = "0px";
 }
