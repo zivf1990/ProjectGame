@@ -12,7 +12,7 @@
     <div class="hero">
       <div class="formbox">
         <div class="button-box">
-          <div id="toggle-btn"></div>
+          <div id="toggle-div"></div>
           <button id="toggle-login" type="button1" class="toggle-btn">
             log In
           </button>
@@ -48,34 +48,42 @@
           <input type="checkbox" class="check-box" /><span>
             Remember Password</span
           >
-          <button type="submit" class="submit-btn">Log in</button>
+          <button id="submit-login-btn" type="submit" class="submit-btn">
+            Log in
+          </button>
         </form>
         <form id="register" name="signup-form" class="input-group">
           <input
             type="text"
+            name="username-signup"
             class="input-field"
-            placeholder="User Id"
+            placeholder="Username"
             required
           />
           <input
             type="email"
+            name="email-signup"
             class="input-field"
-            placeholder="Email Id"
+            placeholder="Email"
             required
           />
           <input
             type="password"
+            name="password-signup"
             class="input-field"
             placeholder="Enter Password"
             required
           />
-          <input type="checkbox" class="check-box" /><span
+          <input type="checkbox" class="check-box" required /><span
             >I agree to the terms & conditions</span
           >
-          <button type="submit" class="submit-btn">Register</button>
+          <button id="submit-signup-btn" type="submit" class="submit-btn">
+            Register
+          </button>
+          <p id="response"></p>
         </form>
       </div>
-      <script src="../js/sign.js"></script>
+      <script src="../js/signup.js"></script>
     </div>
   </body>
 </html>
