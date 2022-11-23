@@ -5,22 +5,36 @@ const c = canvas.getContext("2d");
 const xCenter = canvas.width / 2;
 const yCenter = canvas.height / 2;
 
+const projectiles = [];
+
 const player = new Player(xCenter, yCenter, 30, "blue");
-player.draw();
-const projectile = new Projectile(xCenter, yCenter, 5, "red", {
-  x: 1,
-  y: 1,
+
+addEventListener("click", (event) => {
+  console.log(event.clientX);
+  console.log(event.clientY);
+  shootProjectile(event);
 });
 
-addEventListener("click", (event) => {});
-
-// animate()
+// animate();
 
 function animate() {
-  projectile.draw();
-  projectile.update();
   requestAnimationFrame(animate);
-  console.log("go");
+
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  player.draw();
+  projectiles.forEach((projectile) => {
+    projectile.update();
+  });
+}
+
+function shootProjectile(event) {
+  const angle = Math.atan2(event.clientY - yCenter, event.clientX - xCenter);
+  const velocity = {
+    x: Math.cos(angle),
+    y: Math.sin(angle),
+  };
+  console.log(velocity);
+  projectiles.push(new Projectile(xCenter, yCenter, 4, "green", velocity));
 }
 
 function Player(x, y, radius, color) {
@@ -52,6 +66,7 @@ function Projectile(x, y, radius, color, velocity) {
   };
 
   this.update = function () {
+    this.draw();
     this.x += this.velocity.x;
     this.y += this.velocity.y;
   };

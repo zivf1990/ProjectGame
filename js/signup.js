@@ -12,7 +12,6 @@ let users = [];
 
 loginToggleBtn.addEventListener("click", login);
 signupToggleBtn.addEventListener("click", signup);
-// submitSignupBtn.addEventListener("click", registerUser);
 signupForm.addEventListener("submit", registerUser);
 
 function registerUser(event) {
@@ -38,7 +37,11 @@ function registerUser(event) {
   } else {
     users = JSON.parse(localStorage.getItem("users"));
     //user with the same username already exists in localStorage
-    if (checkIfUsernameExist(username.value)) {
+    const checkIfUsernameExists = users.some(
+      (user) => user.username === username.value
+    );
+
+    if (checkIfUsernameExists) {
       console.log(username.value);
 
       response.textContent = "Username is already exists";
@@ -53,14 +56,6 @@ function registerUser(event) {
 
       window.location.href = "../pages/main.html";
     }
-  }
-
-  function checkIfUsernameExist(username) {
-    return users.some((user) => {
-      console.log(username);
-      console.log(user.username);
-      return user.username === username;
-    });
   }
 
   // signupForm.reportValidity();
