@@ -31,7 +31,7 @@
             ><img src="../images/gp.png"
           /></a>
         </div>
-        <form name="login-form" id="login" class="input-group">
+        <form name="login-form" id="login" class="input-group" action="#">
           <input
             name="user-id"
             type="text"
@@ -40,6 +40,7 @@
             required
           />
           <input
+            name = "password"
             type="password"
             class="input-field"
             placeholder="Enter Password"
@@ -52,7 +53,7 @@
             Log in
           </button>
         </form>
-        <form id="register" name="signup-form" class="input-group">
+        <form id="register" name="signup-form" class="input-group" action="#">
           <input
             type="text"
             name="username-signup"
@@ -83,7 +84,8 @@
           <p id="response"></p>
         </form>
       </div>
-      <script src="../js/signup.js"></script>
     </div>
+    <script src="../js/signup.js"></script>
+    <script src="../js/signin.js"></script>
   </body>
 </html>
