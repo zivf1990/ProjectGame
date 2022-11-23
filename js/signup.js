@@ -16,42 +16,54 @@ signupToggleBtn.addEventListener("click", signup);
 signupForm.addEventListener("submit", registerUser);
 
 function registerUser(event) {
-  let username = signupForm["username-signup"];
-  let password = signupForm["password-signup"].value;
-  let email = signupForm["email-signup"].value;
-  let user = { username: username.value, password: password, email: email };
+  event.preventDefault();
+
+  const username = signupForm["username"];
+  const password = signupForm["password"];
+  const email = signupForm["email"];
+
+  const user = {
+    username: username.value,
+    password: password.value,
+    email: email.value,
+  };
 
   // No users at all.
   if (JSON.parse(localStorage.getItem("users") === null)) {
     if (signupForm.checkValidity()) {
-      event.preventDefault();
-      console.log(signupForm.checkValidity());
       users.push(user);
       localStorage.setItem("users", JSON.stringify(users));
-      window.location.replace("../pages/main.html");
+      window.location.href = "../pages/main.html";
     }
   } else {
-    // users already exists in localStorage
     users = JSON.parse(localStorage.getItem("users"));
     //user with the same username already exists in localStorage
-    if (validateUser(username.value)) {
-      event.preventDefault();
-      username.setCustomValidity("user with the same username already exists");
-      // response.textContent = "User already exists";
+    if (checkIfUsernameExist(username.value)) {
+      console.log(username.value);
+
+      response.textContent = "Username is already exists";
+
+      console.log(username.reportValidity());
     } else {
       //user does not exist in users(create new user)
 
       users.push(user);
-      JSON.stringify(localStorage.setItem("users", users));
-      // event.preventDefault();
-      window.location.href("../pages/main.html");
+
+      localStorage.setItem("users", JSON.stringify(users));
+
+      window.location.href = "../pages/main.html";
     }
   }
 
-  function validateUser(username) {
-    console.log(username);
-    return users.some((user) => user.username === username);
+  function checkIfUsernameExist(username) {
+    return users.some((user) => {
+      console.log(username);
+      console.log(user.username);
+      return user.username === username;
+    });
   }
+
+  // signupForm.reportValidity();
 }
 
 function signup() {

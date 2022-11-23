@@ -55,25 +55,31 @@
         <form id="register" name="signup-form" class="input-group">
           <input
             type="text"
-            name="username-signup"
+            name="username"
             class="input-field"
             placeholder="Username"
+            minlength="4"
+            maxlength="20"
             required
           />
           <input
             type="email"
-            name="email-signup"
+            name="email"
             class="input-field"
             placeholder="Email"
             required
           />
           <input
             type="password"
-            name="password-signup"
+            name="password"
             class="input-field"
             placeholder="Enter Password"
+            minlength="6"
+            maxlength="20"
             required
           />
+          <!-- pattern="[+0-9][+a-z][+A-Z]" -->
+
           <input type="checkbox" class="check-box" required /><span
             >I agree to the terms & conditions</span
           >
