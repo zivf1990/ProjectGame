@@ -1,0 +1,10 @@
+//Update highscore for user
+function updateHighscore() {
+  let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  let curentUserHighScore = currentUser.game1.highScore;
+  if (score > curentUserHighScore || currentUser.game1.highScore === null) {
+    currentUser.game1.highScore = score;
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  }
+}
