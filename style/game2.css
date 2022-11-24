@@ -1,0 +1,97 @@
+body {
+    width: 100%;
+    height: 100vh;
+}
+
+#board {
+    width: 80%;
+    height: 85vh;
+    background-color: rgb(74, 118, 17);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+}
+
+#player1 {
+    justify-self: left;
+    grid-row: 18/21;
+    grid-column: 1/6;
+}
+
+#player2 {
+    justify-self: left;
+    grid-row: 1/5;
+    grid-column: 1/6;
+}
+
+
+#cardsPlayer1 {
+    background-image: url("../images/cardBack.svg");
+    background-size: cover;
+    grid-row: 15/21;
+    grid-column: 9/11;
+}
+
+#cardsPlayer2 {
+    background-image: url("../images/cardBack.svg");
+    background-size: cover;
+    grid-row: 1/7;
+    grid-column: 9/11;
+}
+
+#openCardsPlayer1 {
+    background-color: #ffffff;
+    grid-row: 12/17;
+    grid-column: 12/14;
+    display: grid;
+}
+
+#openCardsPlayer2 {
+    background-color: #ffffff;
+    grid-row: 4/9;
+    grid-column: 12/14;
+    display: grid;
+}
+#cardNum1{
+    align-self: center;
+    justify-self: center;
+    font-size: xx-large;
+}
+#cardNum2{
+    align-self: center;
+    justify-self: center;
+    font-size: xx-large;
+}
+#fuckingStick {
+    background-color: #643D01;
+    grid-row: 9/13;
+    grid-column: 8/10;
+    border-radius: 100%;
+}
+
+#stickWhenWinPlayer1 {
+    background-color: #643D01;
+    grid-row: 16/20;
+    grid-column: 6/8;
+    border-radius: 100%;
+    display: none;
+}
+#stickWhenWinPlayer2 {
+    background-color: #643D01;
+    grid-row: 2/6;
+    grid-column: 6/8;
+    border-radius: 100%;
+    display: none;
+}
+
+
+#playBtn {
+    border-radius: 10px;
+    grid-row: 18/20;
+    grid-column: 13/16;
+}
+
+#playBtn:hover {
+    opacity: 90%;
+}

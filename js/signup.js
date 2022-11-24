@@ -50,8 +50,7 @@ function registerUser(event) {
       users.push(user);
 
       localStorage.setItem("users", JSON.stringify(users));
-
-      window.location.href = "../pages/main.html";
+      location.reload();
     }
   }
 
