@@ -3,9 +3,9 @@ const logInSubmit = document.getElementById("submit-login-btn");
 
 logInSubmit.addEventListener("click", logInCheck);
 
-function Player(x,y){
-  this.x=x;
-  this.y=y;
+function Player(x, y) {
+  this.x = x;
+  this.y = y;
 }
 
 
@@ -14,16 +14,16 @@ function logInCheck(event) {
   let username = loginForm["user-id"].value;
   let password = loginForm["password"].value;
   const usersSignIn = JSON.parse(localStorage.getItem("users"));
-  if(username.length == 0){
+  if (username.length == 0) {
     alert("your user name or password are invalid");
   }
   for (let i = 0; i < usersSignIn.length; i++) {
     console.log(usersSignIn[i].username);
-    console.log(username,password);
+    console.log(username, password);
     if (username == usersSignIn[i].username) {
       if (password == usersSignIn[i].password) {
         event.preventDefault();
-        welcomePage();
+        welcomePage(username, password);
         flag = 1;
       }
     }
@@ -33,7 +33,9 @@ function logInCheck(event) {
   }
 }
 
-function welcomePage() {
-  location.replace("../pages/welcomePage.html");
+function welcomePage(username, password) {
+  let currentUser = { username: username, password: password, highScore: null };
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  location.replace("../pages/main.html");
 }
 
