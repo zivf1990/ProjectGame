@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Fasthand&family=Island+Moments&family=Lobster&family=Poor+Story&family=Tangerine:wght@700&family=Varela+Round&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Varela Round', sans-serif;
+
+}
+
+/*header styling*/
+header {
+    background-color: #d3d3d9;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+nav ul li {
+    display: inline-block;
+    text-transform: uppercase;
+    font-family: "Press Start 2P", cursive;
+    font-size: 1.5vh;
+}
+
+/*about button*/
+#button-one {
+    background-color: #3bb273;
+    padding: 10px 2px;
+    border-radius: 10%;
+    box-shadow: -3px 3px 3px #339963;
+}
+
+/*projects button*/
+#button-two {
+    background-color: #4d9de0;
+    padding: 10px 2px;
+    border-radius: 10%;
+    box-shadow: -3px 3px 3px #2f8dda;
+}
+
+/*blog button*/
+#button-three {
+    background-color: #e15554;
+    padding: 10px 2px;
+    border-radius: 10%;
+    box-shadow: -3px 3px 3px #da2f2f;
+}
+
+/*contact button*/
+#button-four {
+    background-color: #e1bc29;
+    padding: 10px 2px;
+    border-radius: 10%;
+    box-shadow: -3px 3px 3px #c4a31c;
+}
+
+/*button click hover effect*/
+nav ul li:hover {
+    transform: scale(0.9, 0.9);
+}
+
+.logo:hover {
+    animation: rumble 0.3s linear;
+}
+
+@keyframes rumble {
+    25% {
+        transform: rotate(10deg);
+    }
+
+    75% {
+        transform: rotate(-20deg);
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    header {
+        justify-content: space-between;
+        height: 60px;
+
+    }
+
+    h1 {
+        padding: 10px 15px;
+        background-color: #2f8dda;
+        border-radius: 8px;
+        background-color: red;
+    }
+
+    h1:hover {
+        animation-name: h1Animation;
+        position: relative;
+        animation-duration: 5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+
+    }
+
+    @keyframes h1Animation {
+        0% {
+            background-color: red;
+            color: black;
+        }
+
+        25% {
+            background-color: yellow;
+            color: blue;
+        }
+
+        50% {
+            background-color: blue;
+            color:yellow
+        }
+
+        75% {
+            background-color: green;
+            color: red;
+        }
+
+        100% {
+            background-color: red;
+            color: green;
+        }
+    }
+
+    nav {
+        float: right;
+    }
+
+    nav ul li {
+        padding: 10px 15px;
+        margin-right: 20px;
+        font-size: 1em;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+
+    header {
+        justify-content: space-between;
+    }
+
+    nav li {
+        padding: 10px 15px;
+        margin-right: 20px;
+        font-size: 1.2em;
+    }
+}

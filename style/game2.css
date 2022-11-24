@@ -68,23 +68,8 @@ body {
     grid-row: 9/13;
     grid-column: 8/10;
     border-radius: 100%;
+    transition: all 3s ease;
 }
-
-#stickWhenWinPlayer1 {
-    background-color: #643D01;
-    grid-row: 16/20;
-    grid-column: 6/8;
-    border-radius: 100%;
-    display: none;
-}
-#stickWhenWinPlayer2 {
-    background-color: #643D01;
-    grid-row: 2/6;
-    grid-column: 6/8;
-    border-radius: 100%;
-    display: none;
-}
-
 
 #playBtn {
     border-radius: 10px;
