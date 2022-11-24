@@ -1,4 +1,11 @@
-function player1Name(name) {
-    document.getElementById("username").innerHTML = name;
+const headingEl = document.querySelector(".heading");
+
+let currentUser = {};
+
+function init() {
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  headingEl.style.color = `rgba(11, 127, 171,0.5)`
+  headingEl.textContent = `Welcome ${currentUser.username}`
 }
-player1Name(JSON.parse(localStorage.getItem("currentUser")).username);
+
+init()

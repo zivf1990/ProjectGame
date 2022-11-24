@@ -30,6 +30,12 @@ function init() {
   score = 0;
   scoreEl.textContent = score;
   bigScoreEl.textContent = score;
+  document.cursor = "none";
+
+  // addEventListener('mousemove', (event) => {
+  //   player.x = event.clientX;
+  //   player.y = event.clientY
+  // })
 }
 
 startGameBtn.addEventListener("click", () => {
@@ -37,6 +43,17 @@ startGameBtn.addEventListener("click", () => {
   animate();
   spawnEnemies();
   modalEl.style.display = "none";
+});
+
+// Player movements
+addEventListener("keydown", (event) => {
+  // console.log(`KeyboardEvent: key='${event.key}`)
+  if (event.key === "w" && player.y - player.radius > 0) player.y -= 10;
+  if (event.key === "s" && player.y + player.radius < canvas.height)
+    player.y += 10;
+  if (event.key === "a" && player.x - player.radius > 0) player.x -= 10;
+  if (event.key === "d" && player.x + player.radius < canvas.width)
+    player.x += 10;
 });
 
 addEventListener("click", (event) => {
@@ -87,11 +104,17 @@ function animate() {
     //Collision detection between an enemy and a player.
     const dist = Math.hypot(enemy.x - player.x, enemy.y - player.y);
     if (dist - enemy.radius - player.radius < 1) {
-      //GameOver
-      cancelAnimationFrame(animationId);
-      updateHighscore();
-      modalEl.style.display = "flex";
-      bigScoreEl.textContent = score;
+      //Shrink the player if he gets hit.
+      if (player.radius > 10) {
+        enemies.splice(enemyIndex, 1);
+        player.radius -= 2;
+      } else {
+        //GameOver
+        cancelAnimationFrame(animationId);
+        updateHighscore();
+        modalEl.style.display = "flex";
+        bigScoreEl.textContent = score;
+      }
     }
 
     // Collision detection between an enemy and a player's projectile.
@@ -182,7 +205,7 @@ function shootMultipleProjectiles(event) {
 }
 
 function shootProjectile(event) {
-  const angle = Math.atan2(event.clientY - yCenter, event.clientX - xCenter);
+  const angle = Math.atan2(event.clientY - player.y, event.clientX - player.x);
   console.log(angle);
   console.log(Math.cos(angle));
   console.log(Math.sin(angle));
@@ -191,17 +214,22 @@ function shootProjectile(event) {
     y: Math.sin(angle) * 5,
   };
   //   console.log(velocity);
-  projectiles.push(new Projectile(xCenter, yCenter, 4, "white", velocity));
+  projectiles.push(new Projectile(player.x, player.y, 4, "white", velocity));
 }
 
-//Update highscore for user
+//Update the user's highscore.
 function updateHighscore() {
   let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  let curentUserHighScore = currentUser.game1.highScore;
-  if (score > curentUserHighScore || currentUser.game1.highScore === null) {
-    currentUser.game1.highScore = score;
+  //Update the user highscore.
+  if (currentUser.highScore === null || score > currentUser.highScore) {
+    currentUser.highScore = score;
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+    //Update the user data in the localStorage "users" array.
+    let users = JSON.parse(localStorage.getItem("users"));
+    users.splice(users.indexOf(currentUser), 1);
+    localStorage.setItem("users", JSON.stringify(users));
   }
 }
 

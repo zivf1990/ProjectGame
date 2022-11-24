@@ -119,13 +119,7 @@ function checkValid() {
             location.reload();
         }
     }
-    else {
-        scorePlayer1 -= 5;
-        if (scorePlayer1 < 0) {
-            scorePlayer1 = 0;
-        }
-    }
-    document.getElementById("scorePlayer1").innerHTML = scorePlayer1;
+  document.getElementById("scorePlayer1").innerHTML = scorePlayer1;
 }
 
 //tell the winner and reload the game
