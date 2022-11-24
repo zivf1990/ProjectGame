@@ -32,7 +32,7 @@ function registerUser(event) {
     if (signupForm.checkValidity()) {
       users.push(user);
       localStorage.setItem("users", JSON.stringify(users));
-      window.location.href = "../pages/main.html";
+      location.reload();
     }
   } else {
     users = JSON.parse(localStorage.getItem("users"));

@@ -104,11 +104,17 @@ function animate() {
     //Collision detection between an enemy and a player.
     const dist = Math.hypot(enemy.x - player.x, enemy.y - player.y);
     if (dist - enemy.radius - player.radius < 1) {
-      //GameOver
-      cancelAnimationFrame(animationId);
-      updateHighscore();
-      modalEl.style.display = "flex";
-      bigScoreEl.textContent = score;
+      //Shrink the player if he gets hit.
+      if (player.radius > 10) {
+        enemies.splice(enemyIndex, 1);
+        player.radius -= 2;
+      } else {
+        //GameOver
+        cancelAnimationFrame(animationId);
+        updateHighscore();
+        modalEl.style.display = "flex";
+        bigScoreEl.textContent = score;
+      }
     }
 
     // Collision detection between an enemy and a player's projectile.
@@ -211,14 +217,19 @@ function shootProjectile(event) {
   projectiles.push(new Projectile(player.x, player.y, 4, "white", velocity));
 }
 
-//Update highscore for user
+//Update the user's highscore.
 function updateHighscore() {
   let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  // let curentUserHighScore = currentUser.highScore;
+  //Update the user highscore.
   if (currentUser.highScore === null || score > currentUser.highScore) {
     currentUser.highScore = score;
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+    //Update the user data in the localStorage "users" array.
+    let users = JSON.parse(localStorage.getItem("users"));
+    users.splice(users.indexOf(currentUser), 1);
+    localStorage.setItem("users", JSON.stringify(users));
   }
 }
 
