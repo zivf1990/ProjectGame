@@ -106,7 +106,7 @@ function animate() {
     if (dist - enemy.radius - player.radius < 1) {
       //GameOver
       cancelAnimationFrame(animationId);
-      // updateHighscore();
+      updateHighscore();
       modalEl.style.display = "flex";
       bigScoreEl.textContent = score;
     }
@@ -215,9 +215,9 @@ function shootProjectile(event) {
 function updateHighscore() {
   let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  let curentUserHighScore = currentUser.game1.highScore;
-  if (score > curentUserHighScore || currentUser.game1.highScore === null) {
-    currentUser.game1.highScore = score;
+  // let curentUserHighScore = currentUser.highScore;
+  if (currentUser.highScore === null || score > currentUser.highScore) {
+    currentUser.highScore = score;
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
   }
 }
