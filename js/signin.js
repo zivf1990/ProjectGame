@@ -21,7 +21,7 @@ function logInCheck(event) {
     console.log(usersSignIn[i].username);
     console.log(username, password);
     if (username == usersSignIn[i].username) {
-      if (password == usersSignIn[i].password) {
+      if (password === usersSignIn[i].password) {
         event.preventDefault();
         welcomePage(username, password);
         flag = 1;
