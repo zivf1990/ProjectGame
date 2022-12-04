@@ -28,17 +28,16 @@ body {
 
 #cardsPlayer1 {
     background-image: url("../images/cardBack.svg");
-    background-size: cover;
     grid-row: 15/21;
     grid-column: 9/11;
-    
+    background-size: 100% 100%;    
 }
 
 #cardsPlayer2 {
     background-image: url("../images/cardBack.svg");
-    background-size: cover;
     grid-row: 1/7;
     grid-column: 9/11;
+    background-size: 100% 100%;
 }
 
 #openCardsPlayer1 {
@@ -103,4 +102,14 @@ body {
 
 .card4 {
     background-image: url("../images/js.png");
+}
+@keyframes openCard{
+    from{
+        grid-row: 15/21;
+        grid-column: 9/11;
+    }
+    to{
+        grid-row :12/17;
+        grid-column:12/14;
+    }
 }

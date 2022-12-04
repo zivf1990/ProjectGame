@@ -12,6 +12,12 @@ const backgroundAudio = new Audio('../audio/background-audio.mp3');
 const cardsPath = ["url('../images/kd.png')", "url(`../images/kc.png`)", "url(`../images/ks.png`)", "url(`../images/js.png`)"]
 let theFirstOpenCard = 1;
 
+let startRowPlayer1Card = 15;
+let startColumnPlayer1Card = 9;
+let startRowPlayer2Card = 2;
+let startColumnPlayer2Card = 9;
+const MAXSPEED = 1500;
+const MINSPEED = 800;
 const numOfCards = 20;
 const numOfTypeCards = 4;
 let counter = numOfCards;
@@ -35,7 +41,7 @@ currentNumberOfCards.innerHTML = counter;
 
 //every open card player 1 as a random time between 1-3s until player2 win
 function randomTimeOfPlayer2() {
-    return (Math.floor(Math.random() * (1000 - 500) + 500));
+    return (Math.floor(Math.random() * (MAXSPEED - MINSPEED) + MINSPEED));
 }
 //setting user name in game
 function player1Name(name) {
@@ -53,27 +59,57 @@ function cards() {
     }
     return cards;
 }
+
+//player 1 move card for open
+const moveCard = (startRowPlayer1Card) => {
+    openCardsPlayer1.style.gridRow = `${startRowPlayer1Card}/${startRowPlayer1Card + 5}`;
+    if (startRowPlayer1Card > 11) {
+        setTimeout(() => moveCard(startRowPlayer1Card - 1), 50);
+    }
+}
+const moveCardX = (startColumnPlayer1Card) => {
+    openCardsPlayer1.style.gridColumn = `${startColumnPlayer1Card}/${startColumnPlayer1Card + 2}`;
+    if (startColumnPlayer1Card < 12) {
+        setTimeout(() => moveCardX(startColumnPlayer1Card + 1), 50);
+    }
+}
+
+//player 2 move card
+const moveCard2 = (startRowPlayer2Card) => {
+    openCardsPlayer2.style.gridRow = `${startRowPlayer2Card}/${startRowPlayer2Card + 5}`;
+    if (startRowPlayer2Card < 5) {
+        setTimeout(() => moveCard2(startRowPlayer2Card + 1), 50);
+    }
+}
+const moveCard2X = (startColumnPlayer2Card) => {
+    openCardsPlayer2.style.gridColumn = `${startColumnPlayer2Card}/${startColumnPlayer2Card + 2}`;
+    if (startColumnPlayer2Card < 12) {
+        setTimeout(() => moveCard2X(startColumnPlayer2Card + 1), 50);
+    }
+}
+
 //open cards for both players
 function openCard() {
     startBackgroundMusic();
     stick.disabled = false;
     stick.style.gridRow = "9/13";
     stick.style.gridColumn = "8/10";
-    
+
     clearTimeout(myTimeout);
     let flag = 0;
     if (counter == 0) {
         endGame();
         return;
     }
+
     openCardsPlayer1.setAttribute("class", "card" + cardsOfPlayer1[numOfCards - counter]);
-    openCardsPlayer1.style.transform = "translate(20%,-20px);"
-    openCardsPlayer1.style.gridRow = "12/17";
-    openCardsPlayer1.style.gridColumn = "12/14";
+    setTimeout(() => moveCardX(startColumnPlayer1Card), 50);
+    setTimeout(() => moveCard(startRowPlayer1Card), 50);
+
     openCardsPlayer2.setAttribute("class", "card" + cardsOfPlayer2[numOfCards - counter]);
-    openCardsPlayer2.style.gridRow = "4/9";
-    openCardsPlayer2.style.gridColumn = "12/14";
-    
+    setTimeout(() => moveCard2X(startColumnPlayer2Card), 50);
+    setTimeout(() => moveCard2(startRowPlayer2Card), 50);
+
     if (cardsOfPlayer1[numOfCards - counter] == cardsOfPlayer2[numOfCards - counter]) {
         play.removeEventListener("click", openCard);
         let random = randomTimeOfPlayer2();
